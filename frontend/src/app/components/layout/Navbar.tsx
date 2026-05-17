@@ -8,11 +8,11 @@ import { motion } from "motion/react";
 
 const navLinks = [
   { label: "Features", href: "#features" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#programs" },
-  { label: "Success Stories", href: "#testimonials" },
-  { label: "Resources", href: "#gallery" },
-  { label: "Workshops", href: "#workshops" },
+  { label: "Method", href: "#what-hca-does" },
+  { label: "Values", href: "#core-values" },
+  { label: "Programs", href: "#programs" },
+  { label: "Stories", href: "#testimonials" },
+  { label: "Community", href: "#community" },
 ];
 
 export function Navbar() {
@@ -99,8 +99,9 @@ export function Navbar() {
               className="h-9 w-9 flex-shrink-0 object-contain transition-all duration-300 sm:h-10 sm:w-10 xl:h-11 xl:w-11"
               priority
             />
-            <span className="font-display max-w-[9.5rem] text-[13px] font-extrabold leading-[1.05] text-gray-950 sm:max-w-none sm:text-[15px] xl:text-base">
-              Happiness Coaching <span className="text-primary">Academy</span>
+            <span className="font-display max-w-[9.5rem] text-[12px] sm:text-[14px] xl:text-base font-extrabold leading-[1.15] text-gray-950 block">
+              Happiness Coaching<br />
+              <span className="text-primary">Academy</span>
             </span>
           </Link>
 
@@ -157,7 +158,7 @@ export function Navbar() {
               Explore Programs
             </Link>
             <Link
-              href="#transform"
+              href="#cta"
               className="
                 rounded-full px-5 py-3
                 text-sm font-bold text-secondary-foreground
@@ -172,24 +173,43 @@ export function Navbar() {
             </Link>
           </div>
 
-          <button
-            className="
-              flex h-10 w-10 items-center justify-center rounded-full xl:hidden
-              text-gray-700 transition-colors duration-200
-              hover:bg-primary/8 hover:text-primary
-              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
-            "
-            onClick={() => setMenuOpen((open) => !open)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-          >
-            {menuOpen ? (
-              <X className="h-5 w-5" aria-hidden="true" />
-            ) : (
-              <Menu className="h-5 w-5" aria-hidden="true" />
-            )}
-          </button>
+          <div className="flex items-center gap-2 xl:hidden">
+            <Link
+              href="#cta"
+              className="
+                rounded-full px-3.5 py-2 sm:px-4 sm:py-2.5
+                text-[10px] sm:text-xs font-extrabold text-secondary-foreground
+                bg-secondary hover:bg-secondary/90
+                shadow-[0_6px_15px_-4px_rgba(255,206,27,0.45)]
+                transition-all duration-300 hover:translate-y-[-0.5px]
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50
+                flex items-center justify-center shrink-0
+              "
+            >
+              <span className="hidden sm:inline">Start Your Transformation</span>
+              <span className="inline sm:hidden">Start Now</span>
+            </Link>
+
+            <button
+              className="
+                flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full
+                text-gray-700 transition-colors duration-200
+                hover:bg-primary/8 hover:text-primary
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
+                shrink-0
+              "
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+            >
+              {menuOpen ? (
+                <X className="h-5 w-5" aria-hidden="true" />
+              ) : (
+                <Menu className="h-5 w-5" aria-hidden="true" />
+              )}
+            </button>
+          </div>
         </motion.nav>
 
         <div
@@ -252,7 +272,7 @@ export function Navbar() {
                 Explore Programs
               </Link>
               <Link
-                href="#transform"
+                href="#cta"
                 onClick={closeMenu}
                 className="
                   w-full rounded-full px-6 py-3 text-center

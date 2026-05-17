@@ -7,6 +7,8 @@ import { FounderSection } from "@/components/landing/FounderSection";
 import { Navbar } from "@/components/layout/Navbar";
 import { GlobalBackground } from "@/components/landing/GlobalBackground";
 import { HeroSection } from "@/components/landing/HeroSection";
+import { WhatHcaDoesSection } from "@/components/landing/WhatHcaDoesSection";
+import { ProgramsSection } from "@/components/landing/ProgramsSection";
 import { PillarsSection } from "@/components/landing/PillarsSection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 
@@ -18,6 +20,8 @@ export default function Home() {
       <HeroSection />
       <ChallengeSection />
       <FounderSection />
+      <WhatHcaDoesSection />
+      <ProgramsSection />
       <PillarsSection />
       <TestimonialsSection />
       <CtaSection />

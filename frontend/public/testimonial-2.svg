@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Daniel Okafor portrait">
+  <rect width="512" height="512" fill="#fcfaff"/>
+  <circle cx="120" cy="95" r="130" fill="#dcc7e8" opacity="0.7"/>
+  <circle cx="256" cy="228" r="124" fill="#8f553d"/>
+  <path d="M132 214 C132 100 212 56 290 76 C378 98 414 166 388 252 C342 196 232 176 132 214 Z" fill="#111810"/>
+  <circle cx="214" cy="232" r="10" fill="#111810"/>
+  <circle cx="300" cy="232" r="10" fill="#111810"/>
+  <path d="M220 296 Q256 322 300 296" fill="none" stroke="#4c1f18" stroke-width="10" stroke-linecap="round"/>
+  <path d="M112 512 C150 386 360 386 404 512 Z" fill="#111810"/>
+</svg>

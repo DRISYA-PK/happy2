@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sofia Marin portrait">
+  <rect width="512" height="512" fill="#fff9f2"/>
+  <circle cx="380" cy="360" r="160" fill="#f5e7b2"/>
+  <circle cx="256" cy="232" r="120" fill="#d79a73"/>
+  <path d="M142 248 C112 120 202 54 298 78 C382 100 422 190 378 300 C342 212 248 188 142 248 Z" fill="#5d3528"/>
+  <circle cx="214" cy="235" r="10" fill="#111810"/>
+  <circle cx="300" cy="235" r="10" fill="#111810"/>
+  <path d="M220 296 Q256 326 300 296" fill="none" stroke="#7a2f35" stroke-width="10" stroke-linecap="round"/>
+  <path d="M118 512 C158 382 360 382 402 512 Z" fill="#800080"/>
+</svg>

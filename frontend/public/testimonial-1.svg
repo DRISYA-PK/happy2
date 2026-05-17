@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Amelia Hart portrait">
+  <rect width="512" height="512" fill="#fff8e8"/>
+  <circle cx="380" cy="100" r="130" fill="#ffce1b" opacity="0.45"/>
+  <circle cx="256" cy="230" r="122" fill="#e7ad80"/>
+  <path d="M130 230 C138 100 224 60 302 84 C402 114 430 220 370 316 C342 230 240 206 130 230 Z" fill="#2d1d19"/>
+  <circle cx="214" cy="230" r="10" fill="#111810"/>
+  <circle cx="300" cy="230" r="10" fill="#111810"/>
+  <path d="M220 292 Q256 322 296 292" fill="none" stroke="#7a2f35" stroke-width="10" stroke-linecap="round"/>
+  <path d="M120 512 C150 390 365 390 398 512 Z" fill="#800080"/>
+</svg>

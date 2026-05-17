@@ -10,7 +10,7 @@ const links = [
   { label: "Contact", href: "#contact" },
 ];
 
-export function GlassNavbar() {
+export function Navbar() {
   return (
     <motion.header
       initial={{ y: -24, opacity: 0 }}
@@ -22,7 +22,7 @@ export function GlassNavbar() {
         <a href="#" className="flex items-center gap-2.5 pl-1">
           <BrandMark className="h-9 w-9" />
           <span className="font-display text-sm font-bold tracking-tight text-[var(--nature-black)] md:text-[15px]">
-            Happiness <span className="text-[var(--purple-brand)]">Academy</span>
+            Happiness Coaching<span className="text-[var(--purple-brand)]"> Academy</span>
           </span>
         </a>
 

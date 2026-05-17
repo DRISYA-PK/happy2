@@ -27,7 +27,7 @@ export function HeroSection() {
             className="inline-flex items-center gap-2 rounded-full border border-[var(--purple-brand)]/15 bg-white/50 px-4 py-1.5 text-[12px] font-medium tracking-wide text-[var(--purple-brand)] backdrop-blur-md"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--mustard)] shadow-[0_0_12px_rgba(255,206,27,0.9)]" />
-            The Happiness Coaching Academy
+            Your Journey Starts Here
           </motion.div>
 
           <motion.h1

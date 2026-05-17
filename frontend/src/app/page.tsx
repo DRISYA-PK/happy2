@@ -2,7 +2,7 @@
 
 import { CtaSection } from "@/components/landing/CtaSection";
 import { Footer } from "@/components/landing/Footer";
-import { GlassNavbar } from "@/components/landing/GlassNavbar";
+import { Navbar } from "@/components/landing/Navbar";
 import { GlobalBackground } from "@/components/landing/GlobalBackground";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { PillarsSection } from "@/components/landing/PillarsSection";
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden">
       <GlobalBackground />
-      <GlassNavbar />
+      <Navbar />
       <HeroSection />
       <PillarsSection />
       <TestimonialsSection />

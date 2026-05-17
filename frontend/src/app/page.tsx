@@ -3,7 +3,6 @@
 import { CtaSection } from "@/components/landing/CtaSection";
 import { ChallengeSection } from "@/components/landing/ChallengeSection";
 import { Footer } from "@/components/layout/Footer";
-import { FounderSection } from "@/components/landing/FounderSection";
 import { Navbar } from "@/components/layout/Navbar";
 import { GlobalBackground } from "@/components/landing/GlobalBackground";
 import { HeroSection } from "@/components/landing/HeroSection";
@@ -21,7 +20,6 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <ChallengeSection />
-      <FounderSection />
       <WhatHcaDoesSection />
       <CoreValuesSection />
       <ProgramsSection />

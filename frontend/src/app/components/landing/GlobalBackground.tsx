@@ -38,7 +38,7 @@ export function GlobalBackground() {
         />
       </div>
 
-      {/* Mesh glow accent - top right warm */}
+      {/* Mesh glow accent — top right warm */}
       <div className="absolute inset-0 animate-aurora opacity-60">
         <div
           className="absolute top-[10%] right-[15%] h-[28vw] w-[28vw] rounded-full"

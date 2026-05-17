@@ -1,4 +1,4 @@
-import { BrandMark } from "./decor";
+import { BrandMark } from "../landing/decor";
 
 export function Footer() {
   return (

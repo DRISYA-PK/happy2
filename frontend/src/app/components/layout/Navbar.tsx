@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "motion/react";
 
 const navLinks = [
   { label: "Features", href: "#features" },
@@ -15,7 +15,7 @@ const navLinks = [
   { label: "Workshops", href: "#workshops" },
 ];
 
-export  function Navbar() {
+export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -23,27 +23,28 @@ export  function Navbar() {
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
-    
-    // Scroll Spy Logic
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -70% 0px", // Detect when section is in upper/middle of viewport
-      threshold: 0,
-    };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-20% 0px -70% 0px",
+        threshold: 0,
+      },
+    );
+
+    navLinks
+      .map((link) => link.href.replace("#", ""))
+      .forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) observer.observe(element);
       });
-    }, observerOptions);
-
-    const sectionIds = navLinks.map(link => link.href.replace("#", ""));
-    sectionIds.forEach((id) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -51,10 +52,11 @@ export  function Navbar() {
     };
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
@@ -63,7 +65,7 @@ export  function Navbar() {
     <>
       <header
         className={`
-          fixed top-0 left-0 right-0 z-50
+          fixed left-0 right-0 top-0 z-50
           transition-all duration-500 ease-in-out
           ${scrolled ? "pt-3" : "pt-6"}
         `}
@@ -78,35 +80,31 @@ export  function Navbar() {
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className="
-            mx-auto flex items-center justify-between
-            max-w-[1200px] w-[92%]
-            rounded-full
-            px-5 py-3 lg:px-8 lg:py-4
-            border
+            mx-auto flex w-[92%] max-w-[1320px] items-center justify-between
+            rounded-full border
+            px-4 py-3 sm:px-5 xl:px-7 xl:py-4
           "
           aria-label="Main navigation"
         >
-          {/* Logo */}
           <Link
             href="/"
-            className="flex items-center flex-shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-md"
-            aria-label="Happiness Coaching Academy – Home"
+            className="flex min-w-0 flex-shrink-0 items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 sm:gap-3"
+            aria-label="Happiness Coaching Academy - Home"
           >
             <Image
-              src="/home/Logo.png"
+              src="/home/logo.svg"
               alt="Happiness Coaching Academy"
-              width={220}
-              height={50}
-              className="h-10 md:h-12 w-auto object-contain transition-all duration-300"
+              width={44}
+              height={44}
+              className="h-9 w-9 flex-shrink-0 object-contain transition-all duration-300 sm:h-10 sm:w-10 xl:h-11 xl:w-11"
               priority
             />
+            <span className="font-display max-w-[9.5rem] text-[13px] font-extrabold leading-[1.05] text-gray-950 sm:max-w-none sm:text-[15px] xl:text-base">
+              Happiness Coaching <span className="text-primary">Academy</span>
+            </span>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <ul
-            className="hidden lg:flex items-center gap-1"
-            role="list"
-          >
+          <ul className="hidden items-center gap-0.5 xl:flex" role="list">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.replace("#", "");
               return (
@@ -114,14 +112,17 @@ export  function Navbar() {
                   <Link
                     href={link.href}
                     className={`
-                      relative px-4 py-2 rounded-full
-                      text-[15px] font-semibold
+                      relative rounded-full px-3 py-2
+                      text-[14px] font-semibold
                       transition-all duration-300
-                      ${isActive 
-                        ? "text-primary bg-primary/8" 
-                        : scrolled ? "text-gray-700" : "text-gray-800"
+                      ${
+                        isActive
+                          ? "bg-primary/8 text-primary"
+                          : scrolled
+                            ? "text-gray-700"
+                            : "text-gray-800"
                       }
-                      hover:text-primary hover:bg-primary/5
+                      hover:bg-primary/5 hover:text-primary
                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
                     `}
                   >
@@ -129,7 +130,7 @@ export  function Navbar() {
                     {isActive && (
                       <motion.div
                         layoutId="activeTab"
-                        className="absolute bottom-[-2px] left-0 right-0 h-[2px] bg-primary mx-4 rounded-full"
+                        className="absolute bottom-[-2px] left-0 right-0 mx-4 h-[2px] rounded-full bg-primary"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -139,18 +140,17 @@ export  function Navbar() {
             })}
           </ul>
 
-          {/* Desktop CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden items-center gap-3 xl:flex">
             <Link
               href="#programs"
               className="
-                px-6 py-3 rounded-full
+                rounded-full px-5 py-3
                 text-sm font-bold text-primary
                 border border-primary/25 bg-white/50 backdrop-blur-md
-                hover:bg-primary/5 hover:border-primary/40
                 shadow-[0_4px_12px_rgba(128,0,128,0.08)]
-                hover:shadow-[0_8px_20px_rgba(128,0,128,0.12)]
                 transition-all duration-300 hover:-translate-y-0.5
+                hover:border-primary/40 hover:bg-primary/5
+                hover:shadow-[0_8px_20px_rgba(128,0,128,0.12)]
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
               "
             >
@@ -159,12 +159,12 @@ export  function Navbar() {
             <Link
               href="#transform"
               className="
-                px-6 py-3 rounded-full
+                rounded-full px-5 py-3
                 text-sm font-bold text-secondary-foreground
                 bg-secondary hover:bg-secondary/90
                 shadow-[0_10px_25px_-5px_rgba(255,206,27,0.4)]
-                hover:shadow-[0_15px_35px_-5px_rgba(255,206,27,0.5)]
                 transition-all duration-300 hover:-translate-y-0.5
+                hover:shadow-[0_15px_35px_-5px_rgba(255,206,27,0.5)]
                 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50
               "
             >
@@ -172,50 +172,46 @@ export  function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Hamburger */}
           <button
             className="
-              lg:hidden flex items-center justify-center
-              w-10 h-10 rounded-full
-              text-gray-700 hover:text-primary hover:bg-primary/8
-              transition-colors duration-200
+              flex h-10 w-10 items-center justify-center rounded-full xl:hidden
+              text-gray-700 transition-colors duration-200
+              hover:bg-primary/8 hover:text-primary
               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
             "
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
-            {menuOpen
-              ? <X className="h-5 w-5" aria-hidden="true" />
-              : <Menu className="h-5 w-5" aria-hidden="true" />
-            }
+            {menuOpen ? (
+              <X className="h-5 w-5" aria-hidden="true" />
+            ) : (
+              <Menu className="h-5 w-5" aria-hidden="true" />
+            )}
           </button>
         </motion.nav>
 
-        {/* Mobile Dropdown Menu */}
         <div
           id="mobile-menu"
           role="dialog"
           aria-modal="true"
           aria-label="Navigation menu"
           className={`
-            lg:hidden
-            absolute top-full left-1/2 -translate-x-1/2
-            w-[92%] max-w-[420px] mt-3
-            rounded-3xl overflow-hidden
-            bg-white/80 backdrop-blur-2xl
-            border border-white/60
+            absolute left-1/2 top-full mt-3 w-[92%] max-w-[420px] -translate-x-1/2 xl:hidden
+            origin-top overflow-hidden rounded-3xl
+            border border-white/60 bg-white/80 backdrop-blur-2xl
             shadow-[0_16px_48px_rgba(31,38,135,0.12)]
-            transition-all duration-300 ease-out origin-top
-            ${menuOpen
-              ? "opacity-100 scale-y-100 translate-y-0"
-              : "opacity-0 scale-y-95 -translate-y-2 pointer-events-none"
+            transition-all duration-300 ease-out
+            ${
+              menuOpen
+                ? "translate-y-0 scale-y-100 opacity-100"
+                : "pointer-events-none -translate-y-2 scale-y-95 opacity-0"
             }
           `}
         >
-          <nav className="flex flex-col p-5 gap-1">
-            {navLinks.map((link, i) => {
+          <nav className="flex flex-col gap-1 p-5">
+            {navLinks.map((link, index) => {
               const isActive = activeSection === link.href.replace("#", "");
               return (
                 <Link
@@ -223,32 +219,33 @@ export  function Navbar() {
                   href={link.href}
                   onClick={closeMenu}
                   className={`
-                    px-4 py-3 rounded-2xl
+                    rounded-2xl px-4 py-3
                     text-[15px] font-semibold
                     transition-all duration-200
-                    ${isActive 
-                      ? "text-primary bg-primary/8 shadow-sm" 
-                      : "text-gray-800 hover:bg-primary/5 hover:text-primary"
+                    ${
+                      isActive
+                        ? "bg-primary/8 text-primary shadow-sm"
+                        : "text-gray-800 hover:bg-primary/5 hover:text-primary"
                     }
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
                   `}
-                  style={{ transitionDelay: menuOpen ? `${i * 30}ms` : "0ms" }}
+                  style={{ transitionDelay: menuOpen ? `${index * 30}ms` : "0ms" }}
                 >
                   {link.label}
                 </Link>
               );
             })}
 
-            <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-gray-100">
+            <div className="mt-4 flex flex-col gap-3 border-t border-gray-100 pt-4">
               <Link
                 href="#programs"
                 onClick={closeMenu}
                 className="
-                  w-full text-center py-3 px-6 rounded-full
+                  w-full rounded-full px-6 py-3 text-center
                   text-sm font-semibold text-primary
                   border border-primary/25 bg-primary/5
-                  hover:bg-primary/12 hover:border-primary/40
                   transition-all duration-200
+                  hover:border-primary/40 hover:bg-primary/12
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
                 "
               >
@@ -258,11 +255,10 @@ export  function Navbar() {
                 href="#transform"
                 onClick={closeMenu}
                 className="
-                  w-full text-center py-3 px-6 rounded-full
+                  w-full rounded-full px-6 py-3 text-center
                   text-sm font-semibold text-secondary-foreground
-                  bg-secondary hover:bg-secondary/85
-                  shadow-md shadow-secondary/25
-                  transition-all duration-200
+                  bg-secondary shadow-md shadow-secondary/25
+                  transition-all duration-200 hover:bg-secondary/85
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50
                 "
               >
@@ -273,10 +269,9 @@ export  function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Backdrop */}
       {menuOpen && (
         <div
-          className="lg:hidden fixed inset-0 z-40 bg-black/10 backdrop-blur-sm"
+          className="fixed inset-0 z-40 bg-black/10 backdrop-blur-sm xl:hidden"
           onClick={closeMenu}
           aria-hidden="true"
         />

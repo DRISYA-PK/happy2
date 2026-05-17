@@ -1,8 +1,10 @@
 "use client";
 
 import { CtaSection } from "@/components/landing/CtaSection";
-import { Footer } from "@/components/landing/Footer";
-import { Navbar } from "@/components/landing/Navbar";
+import { ChallengeSection } from "@/components/landing/ChallengeSection";
+import { Footer } from "@/components/layout/Footer";
+import { FounderSection } from "@/components/landing/FounderSection";
+import { Navbar } from "@/components/layout/Navbar";
 import { GlobalBackground } from "@/components/landing/GlobalBackground";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { PillarsSection } from "@/components/landing/PillarsSection";
@@ -14,6 +16,8 @@ export default function Home() {
       <GlobalBackground />
       <Navbar />
       <HeroSection />
+      <ChallengeSection />
+      <FounderSection />
       <PillarsSection />
       <TestimonialsSection />
       <CtaSection />

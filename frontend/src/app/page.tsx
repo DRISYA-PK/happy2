@@ -8,8 +8,10 @@ import { Navbar } from "@/components/layout/Navbar";
 import { GlobalBackground } from "@/components/landing/GlobalBackground";
 import { HeroSection } from "@/components/landing/HeroSection";
 import { WhatHcaDoesSection } from "@/components/landing/WhatHcaDoesSection";
+import { CoreValuesSection } from "@/components/landing/CoreValuesSection";
 import { ProgramsSection } from "@/components/landing/ProgramsSection";
 import { PillarsSection } from "@/components/landing/PillarsSection";
+import { CommunitySection } from "@/components/landing/CommunitySection";
 import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 
 export default function Home() {
@@ -21,8 +23,10 @@ export default function Home() {
       <ChallengeSection />
       <FounderSection />
       <WhatHcaDoesSection />
+      <CoreValuesSection />
       <ProgramsSection />
       <PillarsSection />
+      <CommunitySection />
       <TestimonialsSection />
       <CtaSection />
       <Footer />

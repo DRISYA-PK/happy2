@@ -89,9 +89,9 @@ export function HeroSection() {
             className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-[var(--purple-brand)]/10 pt-8"
           >
             {[
-              { v: "12k+", l: "Lives transformed" },
-              { v: "96%", l: "Client satisfaction" },
-              { v: "20+", l: "Countries reached" },
+              { v: "20k+", l: "Lives transformed" },
+              { v: "99%", l: "Client satisfaction" },
+              { v: "10+", l: "Countries reached" },
             ].map((s) => (
               <div key={s.l}>
                 <dt className="font-display text-3xl font-bold tracking-tight text-[var(--purple-brand)] md:text-4xl">
@@ -139,7 +139,7 @@ export function HeroSection() {
               <span className="grid h-8 w-8 place-items-center rounded-xl bg-[var(--mustard)]/90 text-base">*</span>
               <div>
                 <p className="text-[11px] font-semibold text-[var(--nature-black)]">Mindset shift</p>
-                <p className="text-[10px] text-[var(--nature-black)]/55">Week 1 - Awareness</p>
+                <p className="text-[10px] text-[var(--nature-black)]/55">Awareness</p>
               </div>
             </motion.div>
 
@@ -151,7 +151,7 @@ export function HeroSection() {
               <span className="grid h-8 w-8 place-items-center rounded-xl bg-[var(--purple-soft)] text-[var(--purple-brand)]">+</span>
               <div>
                 <p className="text-[11px] font-semibold text-[var(--nature-black)]">Emotional clarity</p>
-                <p className="text-[10px] text-[var(--nature-black)]/55">+38% in 30 days</p>
+                <p className="text-[10px] text-[var(--nature-black)]/55">Loneliness</p>
               </div>
             </motion.div>
           </motion.div>

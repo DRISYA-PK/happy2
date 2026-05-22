@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion } from "motion/react";
+import { useAppDispatch, useAppSelector } from "@/lib/store/store";
+import { clearCredentials } from "@/lib/store/features/authSlice";
 
 const navLinks = [
   { label: "Features", href: "#features" },
@@ -19,6 +21,35 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
+
+  const handleSignOut = async () => {
+    try {
+      // Clear HTTP-only cookie on the backend
+      await fetch("http://localhost:3000/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+    } catch (err) {
+      console.error("Sign out backend error:", err);
+    }
+    
+    // Clear Redux state
+    dispatch(clearCredentials());
+
+    // Remove local storage items
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("user");
+    localStorage.removeItem("isAdmin");
+    
+    document.cookie = "accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC; SameSite=Strict; Secure";
+    
+    window.dispatchEvent(new Event("storage"));
+  };
+
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -141,7 +172,34 @@ export function Navbar() {
             })}
           </ul>
 
-          <div className="hidden items-center gap-3 xl:flex">
+          <div className="hidden items-center gap-4 xl:flex">
+            {user ? (
+              <div className="flex items-center gap-3.5 bg-white/40 backdrop-blur-md border border-white/60 rounded-full py-1.5 pl-4 pr-1.5 shadow-sm animate-fade-in">
+                <span className="text-xs font-bold text-gray-800">
+                  Hi, <span className="text-primary font-black">{user.name.split(' ')[0]}</span>
+                </span>
+                <button
+                  onClick={handleSignOut}
+                  className="
+                    rounded-full px-4 py-2 text-xs font-black text-white bg-primary hover:bg-primary/95 shadow-md cursor-pointer transition-all duration-300 hover:-translate-y-0.5
+                  "
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/authentication/login"
+                className="
+                  rounded-full px-5 py-3
+                  text-sm font-bold text-gray-700 hover:text-primary
+                  transition-all duration-300 hover:-translate-y-0.5
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
+                "
+              >
+                Sign In
+              </Link>
+            )}
             <Link
               href="#programs"
               className="
@@ -257,6 +315,43 @@ export function Navbar() {
             })}
 
             <div className="mt-4 flex flex-col gap-3 border-t border-gray-100 pt-4">
+              {user ? (
+                <div className="flex flex-col gap-2.5">
+                  <div className="text-center px-4 py-2.5 rounded-2xl bg-primary/5 border border-primary/10 text-xs font-semibold text-gray-800">
+                    Signed in as <span className="text-primary font-bold">{user.name}</span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      handleSignOut();
+                      closeMenu();
+                    }}
+                    className="
+                      w-full rounded-full px-6 py-3 text-center
+                      text-sm font-semibold text-red-600 border border-red-200 bg-red-50/50
+                      transition-all duration-200 cursor-pointer
+                      hover:bg-red-100 hover:text-red-700
+                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500/50
+                    "
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href="/authentication/login"
+                  onClick={closeMenu}
+                  className="
+                    w-full rounded-full px-6 py-3 text-center
+                    text-sm font-semibold text-gray-700
+                    border border-gray-250 bg-white/60 backdrop-blur-md
+                    transition-all duration-200
+                    hover:border-primary/30 hover:text-primary hover:bg-primary/5
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
+                  "
+                >
+                  Sign In
+                </Link>
+              )}
               <Link
                 href="#programs"
                 onClick={closeMenu}

@@ -61,7 +61,7 @@ class AuthService {
     const newRefreshToken = generateRefreshToken(user.id.toString())
     await authRepository.updateRefreshToken(user.id, newRefreshToken)
 
-    return { accessToken: newAccessToken, refreshToken: newRefreshToken }
+    return { user, accessToken: newAccessToken, refreshToken: newRefreshToken }
   }
 
   async logout(userId: number) {

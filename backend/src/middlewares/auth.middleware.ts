@@ -11,12 +11,14 @@ const authMiddleware = (
   next: NextFunction
 ) => {
 
-  // Extract access token from Authorization header (Bearer token)
-  const authHeader = req.headers.authorization;
-  let token = "";
+  // Extract access token from cookies, falling back to Authorization header
+  let token = req.cookies?.accessToken || "";
   
-  if (authHeader && authHeader.startsWith("Bearer ")) {
-    token = authHeader.split(" ")[1];
+  if (!token) {
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+      token = authHeader.split(" ")[1];
+    }
   }
 
   if (!token) {

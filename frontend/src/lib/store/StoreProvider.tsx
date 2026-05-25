@@ -17,7 +17,7 @@ function StoreInitializer({ children }: { children: React.ReactNode }) {
       // If we have local state hints of an active session, trigger silent refresh
       if (hasSessionUser) {
         try {
-          const response = await fetch("http://localhost:3000/api/auth/refresh", {
+          const response = await fetch("http://localhost:5000/api/auth/refresh", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

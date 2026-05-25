@@ -20,15 +20,23 @@ export default function AdminDashboardPage({
     const dispatch = useAppDispatch();
     const { user, isInitialized, isAdmin } = useAppSelector((state) => state.auth);
 
-    useEffect(() => {
-        // If auth state has initialized and user is not an admin, redirect them
-        if (isInitialized && (!user || !isAdmin)) {
-            toast.error("Access Denied", {
-                description: "You do not have administrative clearance to access the operations node.",
-            });
-            router.push("/admin/login");
-        }
-    }, [user, isAdmin, isInitialized, router]);
+    console.log({
+        user,
+        isAdmin,
+        isInitialized,
+      });
+
+
+    // useEffect(() => {
+    //     // If auth state has initialized and user is not an admin, redirect them
+    //     if (!isInitialized) return;
+    //     if (!isAdmin || !user) {
+    //         toast.error("Access Denied", {
+    //             description: "You do not have administrative clearance to access the operations node.",
+    //         });
+    //         router.replace("/admin");
+    //     }
+    // }, [user, isAdmin, isInitialized, router]);
 
     const handleSignOut = async () => {
         try {
@@ -49,10 +57,10 @@ export default function AdminDashboardPage({
 
         window.dispatchEvent(new Event("storage"));
         toast.success("Logged out successfully");
-        router.push("/admin/login");
+        router.replace("/admin");
     };
 
-    if (!isInitialized || !user || !isAdmin) {
+    if (!isInitialized ) {
         return (
             <main className="relative min-h-screen w-full flex items-center justify-center">
                 <GlobalBackground />
@@ -63,6 +71,10 @@ export default function AdminDashboardPage({
             </main>
         );
     }
+      // Prevent rendering protected content
+  if (!user || !isAdmin) {
+    return null;
+  }
 
     return (
         <>

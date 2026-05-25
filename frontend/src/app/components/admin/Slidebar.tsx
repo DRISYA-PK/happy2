@@ -27,12 +27,12 @@ export function AppSidebar() {
     const menuItems = [
         {
             title: "Dashboard",
-            url: "/admin/dashboard/dashboard",
+            url: "/admin/dashboard",
             icon: LayoutDashboard,
         },
         {
             title: "Add Questions",
-            url: "/admin/dashboard/add-questions",
+            url: "/admin/add-questions",
             icon: PlusCircle,
         },
     ];
@@ -56,7 +56,7 @@ export function AppSidebar() {
 
         window.dispatchEvent(new Event("storage"));
         toast.success("Logged out successfully");
-        router.push("/admin/login");
+        router.replace("/admin");
     };
 
     return (
@@ -129,4 +129,4 @@ export function AppSidebar() {
     )
 }
 
-
+

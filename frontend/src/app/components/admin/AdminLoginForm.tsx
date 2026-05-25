@@ -86,7 +86,7 @@ export function AdminLoginForm() {
       window.dispatchEvent(new Event("storage"));
 
       setTimeout(() => {
-        router.push("/admin/dashboard/dashboard");
+        router.replace("/admin/dashboard");
       }, 1200);
 
     } catch (error: any) {
@@ -111,7 +111,7 @@ export function AdminLoginForm() {
           window.dispatchEvent(new Event("storage"));
 
           setTimeout(() => {
-            router.push("/admin/dashboard");
+            router.replace("/admin/dashboard");
           }, 1200);
           return;
         }

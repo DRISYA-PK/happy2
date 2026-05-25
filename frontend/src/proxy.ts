@@ -7,14 +7,14 @@ export function proxy(request: NextRequest) {
   // Protect dashboard routes: redirect to login if no access token
   if (request.nextUrl.pathname.startsWith("/admin/dashboard")) {
     if (!accessToken) {
-      const loginUrl = new URL("/admin/login", request.url);
+      const loginUrl = new URL("/admin", request.url);
       return NextResponse.redirect(loginUrl);
     }
   }
 
   // Prevent logged-in admins from accessing the login page (fixes browser back-button issue)
-  if (request.nextUrl.pathname === "/admin/login" && accessToken) {
-    const dashboardUrl = new URL("/admin/dashboard/dashboard", request.url);
+  if (request.nextUrl.pathname === "/admin" && accessToken) {
+    const dashboardUrl = new URL("/admin/dashboard", request.url);
     return NextResponse.redirect(dashboardUrl);
   }
 

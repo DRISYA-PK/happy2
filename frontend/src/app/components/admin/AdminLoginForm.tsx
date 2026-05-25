@@ -86,7 +86,7 @@ export function AdminLoginForm() {
       window.dispatchEvent(new Event("storage"));
 
       setTimeout(() => {
-        router.push("/admin/dashboard");
+        router.push("/admin/dashboard/dashboard");
       }, 1200);
 
     } catch (error: any) {
@@ -116,7 +116,7 @@ export function AdminLoginForm() {
           return;
         }
 
-        errorMsg = "Unable to connect to the authentication server. Ensure backend is running on port 3000.";
+        errorMsg = "Unable to connect to the authentication server. Ensure backend is running on port .";
       }
 
       toast.error("Access Denied", {

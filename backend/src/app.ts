@@ -4,6 +4,7 @@ import cors from "cors"
 import authRouter from "./routes/auth.route"
 
 const app = express()
+console.log("CORS:", process.env.CORS_ORIGINS)
 const allowedOrigins = process.env.CORS_ORIGINS
   ? process.env.CORS_ORIGINS.split(",")
   : []

@@ -1,16 +1,16 @@
-import {prisma} from "../config/db.config"
+import { prisma } from "../config/db.config"
 import { RegisterDTO } from "../dtos/register.dto"
 
 class AuthRepository {
   async findByUsername(username: string) {
     return prisma.user.findUnique({
-      where: {username},
+      where: { username },
     })
   }
 
   async findById(id: number) {
     return prisma.user.findUnique({
-      where: {id},
+      where: { id },
     })
   }
 
@@ -24,6 +24,13 @@ class AuthRepository {
     return prisma.user.update({
       where: { id },
       data: { refreshToken },
+    })
+  }
+
+  async updateRole(id: number, role: string) {
+    return prisma.user.update({
+      where: { id },
+      data: { role },
     })
   }
 }
